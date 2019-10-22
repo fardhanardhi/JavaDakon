@@ -67,10 +67,27 @@ public class GamePlay extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         txtInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtChat = new javax.swing.JTextArea();
+        hijau9 = new javax.swing.JLabel();
+        hijau10 = new javax.swing.JLabel();
+        hijau11 = new javax.swing.JLabel();
+        hijau12 = new javax.swing.JLabel();
+        hijau13 = new javax.swing.JLabel();
+        hijau14 = new javax.swing.JLabel();
+        hijau15 = new javax.swing.JLabel();
+        hijau7 = new javax.swing.JLabel();
+        hijau6 = new javax.swing.JLabel();
+        hijau5 = new javax.swing.JLabel();
+        hijau4 = new javax.swing.JLabel();
+        hijau3 = new javax.swing.JLabel();
+        hijau2 = new javax.swing.JLabel();
+        hijau1 = new javax.swing.JLabel();
+        hijau8 = new javax.swing.JLabel();
+        hijau0 = new javax.swing.JLabel();
         lblPlayer2 = new javax.swing.JLabel();
         lblPlayer1 = new javax.swing.JLabel();
         lblScore2 = new javax.swing.JLabel();
@@ -81,6 +98,9 @@ public class GamePlay extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/merahBesar.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -108,6 +128,72 @@ public class GamePlay extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(40, 470, 262, 87);
+
+        hijau9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau9);
+        hijau9.setBounds(730, 320, 90, 110);
+
+        hijau10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau10);
+        hijau10.setBounds(640, 320, 90, 110);
+
+        hijau11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau11);
+        hijau11.setBounds(550, 320, 90, 110);
+
+        hijau12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau12);
+        hijau12.setBounds(450, 320, 90, 110);
+
+        hijau13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau13);
+        hijau13.setBounds(360, 320, 90, 110);
+
+        hijau14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau14);
+        hijau14.setBounds(270, 320, 90, 110);
+
+        hijau15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau15);
+        hijau15.setBounds(170, 320, 90, 110);
+
+        hijau7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau7);
+        hijau7.setBounds(730, 190, 90, 110);
+
+        hijau6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau6);
+        hijau6.setBounds(640, 190, 90, 110);
+
+        hijau5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau5);
+        hijau5.setBounds(550, 190, 90, 110);
+
+        hijau4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau4);
+        hijau4.setBounds(450, 190, 90, 110);
+
+        hijau3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau3);
+        hijau3.setBounds(360, 190, 90, 110);
+
+        hijau2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau2);
+        hijau2.setBounds(270, 190, 90, 110);
+
+        hijau1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        getContentPane().add(hijau1);
+        hijau1.setBounds(170, 190, 90, 110);
+
+        hijau8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hijau8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijauBesar.png"))); // NOI18N
+        getContentPane().add(hijau8);
+        hijau8.setBounds(820, 250, 120, 120);
+
+        hijau0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hijau0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijauBesar.png"))); // NOI18N
+        getContentPane().add(hijau0);
+        hijau0.setBounds(50, 250, 120, 120);
 
         lblPlayer2.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         lblPlayer2.setForeground(java.awt.Color.white);
@@ -261,6 +347,22 @@ public class GamePlay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel hijau0;
+    private javax.swing.JLabel hijau1;
+    private javax.swing.JLabel hijau10;
+    private javax.swing.JLabel hijau11;
+    private javax.swing.JLabel hijau12;
+    private javax.swing.JLabel hijau13;
+    private javax.swing.JLabel hijau14;
+    private javax.swing.JLabel hijau15;
+    private javax.swing.JLabel hijau2;
+    private javax.swing.JLabel hijau3;
+    private javax.swing.JLabel hijau4;
+    private javax.swing.JLabel hijau5;
+    private javax.swing.JLabel hijau6;
+    private javax.swing.JLabel hijau7;
+    private javax.swing.JLabel hijau8;
+    private javax.swing.JLabel hijau9;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -268,6 +370,7 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPlayer1;
     private javax.swing.JLabel lblPlayer2;
