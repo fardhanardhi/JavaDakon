@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
@@ -51,6 +52,26 @@ public class GamePlay extends javax.swing.JFrame {
         hijau13.setVisible(false);
         hijau14.setVisible(false);
         hijau15.setVisible(false);
+        
+        lblJml0.setText(String.valueOf(boardArr[0]));
+        lblJml1.setText(String.valueOf(boardArr[1]));
+        lblJml2.setText(String.valueOf(boardArr[2]));
+        lblJml3.setText(String.valueOf(boardArr[3]));
+        lblJml4.setText(String.valueOf(boardArr[4]));
+        lblJml5.setText(String.valueOf(boardArr[5]));
+        lblJml6.setText(String.valueOf(boardArr[6]));
+        lblJml7.setText(String.valueOf(boardArr[7]));
+        lblJml8.setText(String.valueOf(boardArr[8]));
+        lblJml9.setText(String.valueOf(boardArr[9]));
+        lblJml10.setText(String.valueOf(boardArr[10]));
+        lblJml11.setText(String.valueOf(boardArr[11]));
+        lblJml12.setText(String.valueOf(boardArr[12]));
+        lblJml13.setText(String.valueOf(boardArr[13]));
+        lblJml14.setText(String.valueOf(boardArr[14]));
+        lblJml15.setText(String.valueOf(boardArr[15]));
+        
+        lblScore1.setText(String.valueOf(boardArr[8]));
+        lblScore2.setText(String.valueOf(boardArr[0]));
         
         this.ip = ip;
         this.port = port;
@@ -107,22 +128,22 @@ public class GamePlay extends javax.swing.JFrame {
         hijau1 = new javax.swing.JLabel();
         hijau8 = new javax.swing.JLabel();
         hijau0 = new javax.swing.JLabel();
-        txtJml0 = new javax.swing.JLabel();
-        txtJml1 = new javax.swing.JLabel();
-        txtJml2 = new javax.swing.JLabel();
-        txtJml3 = new javax.swing.JLabel();
-        txtJml4 = new javax.swing.JLabel();
-        txtJml5 = new javax.swing.JLabel();
-        txtJml6 = new javax.swing.JLabel();
-        txtJml7 = new javax.swing.JLabel();
-        txtJml8 = new javax.swing.JLabel();
-        txtJml9 = new javax.swing.JLabel();
-        txtJml10 = new javax.swing.JLabel();
-        txtJml11 = new javax.swing.JLabel();
-        txtJml12 = new javax.swing.JLabel();
-        txtJml13 = new javax.swing.JLabel();
-        txtJml14 = new javax.swing.JLabel();
-        txtJml15 = new javax.swing.JLabel();
+        lblJml0 = new javax.swing.JLabel();
+        lblJml1 = new javax.swing.JLabel();
+        lblJml2 = new javax.swing.JLabel();
+        lblJml3 = new javax.swing.JLabel();
+        lblJml4 = new javax.swing.JLabel();
+        lblJml5 = new javax.swing.JLabel();
+        lblJml6 = new javax.swing.JLabel();
+        lblJml7 = new javax.swing.JLabel();
+        lblJml8 = new javax.swing.JLabel();
+        lblJml9 = new javax.swing.JLabel();
+        lblJml10 = new javax.swing.JLabel();
+        lblJml11 = new javax.swing.JLabel();
+        lblJml12 = new javax.swing.JLabel();
+        lblJml13 = new javax.swing.JLabel();
+        lblJml14 = new javax.swing.JLabel();
+        lblJml15 = new javax.swing.JLabel();
         lblPlayer2 = new javax.swing.JLabel();
         lblPlayer1 = new javax.swing.JLabel();
         lblScore2 = new javax.swing.JLabel();
@@ -217,6 +238,11 @@ public class GamePlay extends javax.swing.JFrame {
         hijau2.setBounds(270, 190, 90, 110);
 
         hijau1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau1MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau1);
         hijau1.setBounds(170, 190, 90, 110);
 
@@ -230,117 +256,117 @@ public class GamePlay extends javax.swing.JFrame {
         getContentPane().add(hijau0);
         hijau0.setBounds(50, 250, 120, 120);
 
-        txtJml0.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml0.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml0.setText("0");
-        getContentPane().add(txtJml0);
-        txtJml0.setBounds(70, 300, 80, 30);
+        lblJml0.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml0.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml0.setText("0");
+        getContentPane().add(lblJml0);
+        lblJml0.setBounds(70, 300, 80, 30);
 
-        txtJml1.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml1.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml1.setText("0");
-        getContentPane().add(txtJml1);
-        txtJml1.setBounds(185, 230, 50, 30);
+        lblJml1.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml1.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml1.setText("0");
+        getContentPane().add(lblJml1);
+        lblJml1.setBounds(185, 230, 50, 30);
 
-        txtJml2.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml2.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml2.setText("0");
-        getContentPane().add(txtJml2);
-        txtJml2.setBounds(285, 230, 50, 30);
+        lblJml2.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml2.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml2.setText("0");
+        getContentPane().add(lblJml2);
+        lblJml2.setBounds(285, 230, 50, 30);
 
-        txtJml3.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml3.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml3.setText("0");
-        getContentPane().add(txtJml3);
-        txtJml3.setBounds(375, 230, 50, 30);
+        lblJml3.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml3.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml3.setText("0");
+        getContentPane().add(lblJml3);
+        lblJml3.setBounds(375, 230, 50, 30);
 
-        txtJml4.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml4.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml4.setText("0");
-        getContentPane().add(txtJml4);
-        txtJml4.setBounds(465, 230, 50, 30);
+        lblJml4.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml4.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml4.setText("0");
+        getContentPane().add(lblJml4);
+        lblJml4.setBounds(465, 230, 50, 30);
 
-        txtJml5.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml5.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml5.setText("0");
-        getContentPane().add(txtJml5);
-        txtJml5.setBounds(565, 230, 50, 30);
+        lblJml5.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml5.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml5.setText("0");
+        getContentPane().add(lblJml5);
+        lblJml5.setBounds(565, 230, 50, 30);
 
-        txtJml6.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml6.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml6.setText("0");
-        getContentPane().add(txtJml6);
-        txtJml6.setBounds(655, 230, 50, 30);
+        lblJml6.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml6.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml6.setText("0");
+        getContentPane().add(lblJml6);
+        lblJml6.setBounds(655, 230, 50, 30);
 
-        txtJml7.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml7.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml7.setText("0");
-        getContentPane().add(txtJml7);
-        txtJml7.setBounds(745, 230, 50, 30);
+        lblJml7.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml7.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml7.setText("0");
+        getContentPane().add(lblJml7);
+        lblJml7.setBounds(745, 230, 50, 30);
 
-        txtJml8.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml8.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml8.setText("0");
-        getContentPane().add(txtJml8);
-        txtJml8.setBounds(835, 300, 90, 30);
+        lblJml8.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml8.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml8.setText("0");
+        getContentPane().add(lblJml8);
+        lblJml8.setBounds(835, 300, 90, 30);
 
-        txtJml9.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml9.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml9.setText("0");
-        getContentPane().add(txtJml9);
-        txtJml9.setBounds(740, 360, 60, 30);
+        lblJml9.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml9.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml9.setText("0");
+        getContentPane().add(lblJml9);
+        lblJml9.setBounds(740, 360, 60, 30);
 
-        txtJml10.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml10.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml10.setText("0");
-        getContentPane().add(txtJml10);
-        txtJml10.setBounds(650, 360, 60, 30);
+        lblJml10.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml10.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml10.setText("0");
+        getContentPane().add(lblJml10);
+        lblJml10.setBounds(650, 360, 60, 30);
 
-        txtJml11.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml11.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml11.setText("0");
-        getContentPane().add(txtJml11);
-        txtJml11.setBounds(560, 360, 60, 30);
+        lblJml11.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml11.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml11.setText("0");
+        getContentPane().add(lblJml11);
+        lblJml11.setBounds(560, 360, 60, 30);
 
-        txtJml12.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml12.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml12.setText("0");
-        getContentPane().add(txtJml12);
-        txtJml12.setBounds(460, 360, 60, 30);
+        lblJml12.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml12.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml12.setText("0");
+        getContentPane().add(lblJml12);
+        lblJml12.setBounds(460, 360, 60, 30);
 
-        txtJml13.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml13.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml13.setText("0");
-        getContentPane().add(txtJml13);
-        txtJml13.setBounds(370, 360, 60, 30);
+        lblJml13.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml13.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml13.setText("0");
+        getContentPane().add(lblJml13);
+        lblJml13.setBounds(370, 360, 60, 30);
 
-        txtJml14.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml14.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml14.setText("0");
-        getContentPane().add(txtJml14);
-        txtJml14.setBounds(280, 360, 60, 30);
+        lblJml14.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml14.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml14.setText("0");
+        getContentPane().add(lblJml14);
+        lblJml14.setBounds(280, 360, 60, 30);
 
-        txtJml15.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
-        txtJml15.setForeground(new java.awt.Color(255, 255, 255));
-        txtJml15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtJml15.setText("0");
-        getContentPane().add(txtJml15);
-        txtJml15.setBounds(180, 360, 60, 30);
+        lblJml15.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblJml15.setForeground(new java.awt.Color(255, 255, 255));
+        lblJml15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJml15.setText("0");
+        getContentPane().add(lblJml15);
+        lblJml15.setBounds(180, 360, 60, 30);
 
         lblPlayer2.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         lblPlayer2.setForeground(java.awt.Color.white);
@@ -435,6 +461,10 @@ public class GamePlay extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void hijau1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau1MouseClicked
+        updateBoard(lblJml1, 1);
+    }//GEN-LAST:event_hijau1MouseClicked
+
     public void read() {
         String tempChat = txtChat.getText();
         int portInt = Integer.parseInt(port);
@@ -462,7 +492,140 @@ public class GamePlay extends javax.swing.JFrame {
             System.out.println(err);
         }
     }
-
+    
+    public void updateBoard(JLabel label, int posisi){
+        int jmlAmbil=Integer.parseInt(label.getText().toString());
+        boardArr[posisi]=0;
+        while (jmlAmbil>0) {
+            if (posisi==boardArr.length-1) {
+                posisi=0;
+            }else{
+                posisi++;
+            }
+            jmlAmbil--;
+            boardArr[posisi]++;
+        }
+        for (int i = 0; i < boardArr.length; i++) {
+            JLabel labelAktif=getJLabelHijau(i);            
+            JLabel labelJumlah=getJLabelJumlah(i);
+            if (boardArr[i]==0) {
+                labelAktif.setVisible(false);
+            }else{
+                labelAktif.setVisible(false);
+            }
+            labelJumlah.setText(String.valueOf(boardArr[i]));
+        }
+    }
+    
+    public JLabel getJLabelJumlah(int index){
+        JLabel label=null;
+        switch(index){
+            case 0:
+                label=lblJml0;
+                break;
+            case 1:
+                label=lblJml1;
+                break;
+            case 2:
+                label=lblJml2;
+                break; 
+            case 3:
+                label=lblJml3;
+                break;
+            case 4:
+                label=lblJml4;
+                break;
+            case 5:
+                label=lblJml5;
+                break;
+            case 6:
+                label=lblJml6;
+                break;
+            case 7:
+                label=lblJml7;
+                break;
+            case 8:
+                label=lblJml8;
+                break;
+            case 9:
+                label=lblJml9;
+                break;
+            case 10:
+                label=lblJml10;
+                break;
+            case 11:
+                label=lblJml11;
+                break;
+            case 12:
+                label=lblJml12;
+                break;
+            case 13:
+                label=lblJml13;
+                break;
+            case 14:
+                label=lblJml14;
+                break;
+            case 15:
+                label=lblJml15;
+                break;
+        }
+        return label;
+    }
+    
+    public JLabel getJLabelHijau(int index){
+        JLabel label=null;
+        switch(index){
+            case 0:
+                label=hijau0;
+                break;
+            case 1:
+                label=hijau1;
+                break;
+            case 2:
+                label=hijau2;
+                break; 
+            case 3:
+                label=hijau3;
+                break;
+            case 4:
+                label=hijau4;
+                break;
+            case 5:
+                label=hijau5;
+                break;
+            case 6:
+                label=hijau6;
+                break;
+            case 7:
+                label=hijau7;
+                break;
+            case 8:
+                label=hijau8;
+                break;
+            case 9:
+                label=hijau9;
+                break;
+            case 10:
+                label=hijau10;
+                break;
+            case 11:
+                label=hijau11;
+                break;
+            case 12:
+                label=hijau12;
+                break;
+            case 13:
+                label=hijau13;
+                break;
+            case 14:
+                label=hijau14;
+                break;
+            case 15:
+                label=hijau15;
+                break;
+        }
+        return label;
+    }
     /**
      * @param args the command line arguments
      */
@@ -525,27 +688,27 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblJml0;
+    private javax.swing.JLabel lblJml1;
+    private javax.swing.JLabel lblJml10;
+    private javax.swing.JLabel lblJml11;
+    private javax.swing.JLabel lblJml12;
+    private javax.swing.JLabel lblJml13;
+    private javax.swing.JLabel lblJml14;
+    private javax.swing.JLabel lblJml15;
+    private javax.swing.JLabel lblJml2;
+    private javax.swing.JLabel lblJml3;
+    private javax.swing.JLabel lblJml4;
+    private javax.swing.JLabel lblJml5;
+    private javax.swing.JLabel lblJml6;
+    private javax.swing.JLabel lblJml7;
+    private javax.swing.JLabel lblJml8;
+    private javax.swing.JLabel lblJml9;
     private javax.swing.JLabel lblPlayer1;
     private javax.swing.JLabel lblPlayer2;
     private javax.swing.JLabel lblScore1;
     private javax.swing.JLabel lblScore2;
     private javax.swing.JTextArea txtChat;
     private javax.swing.JTextField txtInput;
-    private javax.swing.JLabel txtJml0;
-    private javax.swing.JLabel txtJml1;
-    private javax.swing.JLabel txtJml10;
-    private javax.swing.JLabel txtJml11;
-    private javax.swing.JLabel txtJml12;
-    private javax.swing.JLabel txtJml13;
-    private javax.swing.JLabel txtJml14;
-    private javax.swing.JLabel txtJml15;
-    private javax.swing.JLabel txtJml2;
-    private javax.swing.JLabel txtJml3;
-    private javax.swing.JLabel txtJml4;
-    private javax.swing.JLabel txtJml5;
-    private javax.swing.JLabel txtJml6;
-    private javax.swing.JLabel txtJml7;
-    private javax.swing.JLabel txtJml8;
-    private javax.swing.JLabel txtJml9;
     // End of variables declaration//GEN-END:variables
 }
