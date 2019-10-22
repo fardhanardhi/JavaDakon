@@ -515,13 +515,14 @@ public class GamePlay extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (menangSuit) {
             // jika menang suit
-            hijau1.setVisible(true);
-            hijau2.setVisible(true);
-            hijau3.setVisible(true);
-            hijau4.setVisible(true);
-            hijau5.setVisible(true);
-            hijau6.setVisible(true);
-            hijau7.setVisible(true);
+//            hijau1.setVisible(true);
+//            hijau2.setVisible(true);
+//            hijau3.setVisible(true);
+//            hijau4.setVisible(true);
+//            hijau5.setVisible(true);
+//            hijau6.setVisible(true);
+//            hijau7.setVisible(true);
+            updateBoardClickable(true);
         } else {
             // jika kalah
             tm.start();
@@ -618,7 +619,7 @@ public class GamePlay extends javax.swing.JFrame {
 
             sk.close();
             ss.close();
-            updateBoardClickable();
+            updateBoardClickable(true);
         } catch (Exception err) {
             System.out.println(err);
         }
@@ -657,31 +658,35 @@ public class GamePlay extends javax.swing.JFrame {
             jmlAmbil--;
             boardArr[posisi]++;
         }
-        updateBoardClickable();
+        updateBoardClickable(false);
         write();
     }
 
-    public void updateBoardClickable() {
+    public void updateBoardClickable(boolean clickable) {
         for (int i = 0; i < boardArr.length; i++) {
             JLabel labelAktif = getJLabelHijau(i);
             JLabel labelJumlah = getJLabelJumlah(i);
-            if (boardArr[i] == 0) {
-                labelAktif.setVisible(false);
-            } else {
-                if (menangSuit) {
-                    if (i > 0 && i < 8) {
-                        labelAktif.setVisible(true);
-                    } else {
-                        labelAktif.setVisible(false);
-                    }
+            if (clickable) {
+                if (boardArr[i] == 0) {
+                    labelAktif.setVisible(false);
                 } else {
-                    if (i > 8 && i <= 15) {
-                        labelAktif.setVisible(true);
+                    if (menangSuit) {
+                        if (i > 0 && i < 8) {
+                            labelAktif.setVisible(true);
+                        } else {
+                            labelAktif.setVisible(false);
+                        }
                     } else {
-                        labelAktif.setVisible(false);
+                        if (i > 8 && i <= 15) {
+                            labelAktif.setVisible(true);
+                        } else {
+                            labelAktif.setVisible(false);
 
+                        }
                     }
                 }
+            } else {
+                labelAktif.setVisible(false);
             }
             labelJumlah.setText(String.valueOf(boardArr[i]));
         }
