@@ -121,8 +121,13 @@ public class CreateGameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIPActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO menampilkan ip local:
-        txtIP.setText("localhost");
+        try {
+            // TODO menampilkan ip local:
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            txtIP.setText(inetAddress.getHostAddress());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(CreateGameMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
