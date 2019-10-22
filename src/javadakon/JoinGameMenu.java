@@ -144,7 +144,7 @@ public class JoinGameMenu extends javax.swing.JFrame {
         boolean menangSuit = false;
         String menangSuitStr = !menangSuit + "";
         String MyIp = txtMyIP.getText();
-        String kirim = menangSuitStr + MyIp;
+        String kirim = menangSuitStr + "," + MyIp;
 
         try {
             Socket cl = new Socket(ip, portInt);

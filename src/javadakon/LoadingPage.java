@@ -30,9 +30,9 @@ public class LoadingPage extends javax.swing.JFrame {
      * @param port
      * @param menangSuit
      */
-    public LoadingPage(String ip, String port) {
+    public LoadingPage(String port) {
         initComponents();
-        this.ip = ip;
+//        this.ip = ip;
         this.port = port;
         
 //        btnRetry.setVisible(false);
@@ -107,7 +107,7 @@ public class LoadingPage extends javax.swing.JFrame {
                     new InputStreamReader(sk.getInputStream())
             );
             String data = br.readLine();
-            String arrData[]=data.split("\\,",-1);
+            String arrData[]=data.split("\\,",0);
             String menangSuit=arrData[0];
             String ipNext=arrData[1];
             System.out.println(data);
@@ -121,7 +121,7 @@ public class LoadingPage extends javax.swing.JFrame {
 
                 boolean menangSuitBool = Boolean.parseBoolean(menangSuit);
 
-                new GamePlay(ip, port, menangSuitBool).setVisible(true);
+                new GamePlay(ipNext, port, menangSuitBool).setVisible(true);
                 this.setVisible(false);
             }
 

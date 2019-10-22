@@ -139,7 +139,7 @@ public class CreateGameMenu extends javax.swing.JFrame {
         String ip = txtIP.getText();
         String port = txtPort.getText();
         
-        new LoadingPage(ip, port).setVisible(true);
+        new LoadingPage(port).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCreateActionPerformed
 
