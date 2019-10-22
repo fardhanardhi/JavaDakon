@@ -110,12 +110,14 @@ public class GamePlay extends javax.swing.JFrame {
         jScrollPane1.setBounds(40, 470, 262, 87);
 
         lblPlayer2.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        lblPlayer2.setForeground(java.awt.Color.white);
         lblPlayer2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlayer2.setText("Player 2");
         getContentPane().add(lblPlayer2);
         lblPlayer2.setBounds(690, 20, 210, 60);
 
         lblPlayer1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        lblPlayer1.setForeground(java.awt.Color.white);
         lblPlayer1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlayer1.setText("Player 1");
         getContentPane().add(lblPlayer1);
