@@ -110,6 +110,7 @@ public class LoadingPage extends javax.swing.JFrame {
             String arrData[]=data.split("\\,",-1);
             String menangSuit=arrData[0];
             String ipNext=arrData[1];
+            System.out.println(data);
             System.out.println(ipNext); 
             System.out.println(menangSuit);
 
