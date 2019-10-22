@@ -49,7 +49,6 @@ public class CreateGameMenu extends javax.swing.JFrame {
             }
         });
 
-        txtIP.setEnabled(false);
         txtIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIPActionPerformed(evt);
