@@ -106,7 +106,12 @@ public class LoadingPage extends javax.swing.JFrame {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(sk.getInputStream())
             );
-            String menangSuit = br.readLine();
+            String data = br.readLine();
+            String arrData[]=data.split("\\,",-1);
+            String menangSuit=arrData[0];
+            String ipNext=arrData[1];
+            System.out.println(ipNext); 
+            System.out.println(menangSuit);
 
             if (menangSuit.equals(null)) {
                 System.out.println("null");
