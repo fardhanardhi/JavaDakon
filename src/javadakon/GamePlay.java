@@ -23,9 +23,10 @@ import javax.swing.Timer;
  * @author adan
  */
 public class GamePlay extends javax.swing.JFrame {
+
     private String ip, port;
     boolean menangSuit;
-    int boardArr[]={0,7,7,7,7,7,7,7,0,7,7,7,7,7,7,7};
+    int boardArr[] = {0, 7, 7, 7, 7, 7, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7};
 
     /**
      * Creates new form Dakon
@@ -53,7 +54,7 @@ public class GamePlay extends javax.swing.JFrame {
         hijau13.setVisible(false);
         hijau14.setVisible(false);
         hijau15.setVisible(false);
-        
+
         lblJml0.setText(String.valueOf(boardArr[0]));
         lblJml1.setText(String.valueOf(boardArr[1]));
         lblJml2.setText(String.valueOf(boardArr[2]));
@@ -70,14 +71,14 @@ public class GamePlay extends javax.swing.JFrame {
         lblJml13.setText(String.valueOf(boardArr[13]));
         lblJml14.setText(String.valueOf(boardArr[14]));
         lblJml15.setText(String.valueOf(boardArr[15]));
-        
+
         lblScore1.setText(String.valueOf(boardArr[8]));
         lblScore2.setText(String.valueOf(boardArr[0]));
-        
+
         this.ip = ip;
         this.port = port;
         this.menangSuit = menangSuit;
-        
+
         System.out.println("ip: " + ip + ", port: " + port + ", menang suit: " + menangSuit);
     }
 
@@ -467,7 +468,6 @@ public class GamePlay extends javax.swing.JFrame {
     }//GEN-LAST:event_hijau1MouseClicked
 
     public void read() {
-        String tempChat = txtChat.getText();
         int portInt = Integer.parseInt(port);
 
         try {
@@ -477,20 +477,37 @@ public class GamePlay extends javax.swing.JFrame {
                     new InputStreamReader(sk.getInputStream())
             );
             String line = br.readLine();
+            String arrData[] = line.split("\\,", 0);
 
-            txtChat.setText(tempChat + "\n" + line);
+            for (int i = 0; i < boardArr.length; i++) {
+                boardArr[i] = Integer.parseInt(arrData[i]);
+            }
+            
+            System.out.println("arrdata: " + line);
+
+            for (int i = 0; i < boardArr.length; i++) {
+                JLabel labelAktif = getJLabelHijau(i);
+                JLabel labelJumlah = getJLabelJumlah(i);
+                if (boardArr[i] == 0) {
+                    labelAktif.setVisible(false);
+                } else {
+                    labelAktif.setVisible(false);
+                }
+                labelJumlah.setText(String.valueOf(boardArr[i]));
+            }
+            if (line.equals(null)) {
+                System.out.println("null");
+            } else {
+                tm.stop();
+
+            }
+            System.out.println(line);
+
             if ((boardArr[1]==0 && boardArr[2]==0 && boardArr[3]==0 && boardArr[4]==0 && boardArr[5]==0 && boardArr[6]==0 && boardArr[7]==0) && (boardArr[8]>boardArr[0])) {
                 JOptionPane.showMessageDialog(null, "Selamat... !\nPlayer 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
             }else if ((boardArr[9]==0 && boardArr[10]==0 && boardArr[11]==0 && boardArr[12]==0 && boardArr[13]==0 && boardArr[14]==0 && boardArr[15]==0) && (boardArr[0]>boardArr[8])){
                 JOptionPane.showMessageDialog(null, "Selamat... !\nPlayer 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
             }
-
-            if (line.equals(null)) {
-                System.out.println("null");
-            } else {
-                tm.stop();
-            }
-            System.out.println(line);
 
             sk.close();
             ss.close();
@@ -498,140 +515,163 @@ public class GamePlay extends javax.swing.JFrame {
             System.out.println(err);
         }
     }
-    
-    public void updateBoard(JLabel label, int posisi){
-        int jmlAmbil=Integer.parseInt(label.getText().toString());
-        boardArr[posisi]=0;
-        while (jmlAmbil>0) {
-            if (posisi==boardArr.length-1) {
-                posisi=0;
-            }else{
+
+    public void write() {
+        String arrStr = "";
+        for (int i = 0; i < boardArr.length; i++) {
+            arrStr += (i == boardArr.length - 1) ? boardArr[i] : boardArr[i] + ",";
+        }
+
+        int portInt = Integer.parseInt(port);
+        try {
+            Socket cl = new Socket(ip, portInt);
+            DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
+            dos.writeBytes(arrStr);
+
+            cl.close();
+            dos.close();
+
+            tm.start();
+        } catch (Exception e) {
+            System.out.println("gagal");
+        }
+    }
+
+    public void updateBoard(JLabel label, int posisi) {
+        int jmlAmbil = Integer.parseInt(label.getText().toString());
+        boardArr[posisi] = 0;
+        while (jmlAmbil > 0) {
+            if (posisi == boardArr.length - 1) {
+                posisi = 0;
+            } else {
                 posisi++;
             }
             jmlAmbil--;
             boardArr[posisi]++;
         }
         for (int i = 0; i < boardArr.length; i++) {
-            JLabel labelAktif=getJLabelHijau(i);            
-            JLabel labelJumlah=getJLabelJumlah(i);
-            if (boardArr[i]==0) {
+            JLabel labelAktif = getJLabelHijau(i);
+            JLabel labelJumlah = getJLabelJumlah(i);
+            if (boardArr[i] == 0) {
                 labelAktif.setVisible(false);
-            }else{
+            } else {
                 labelAktif.setVisible(false);
             }
             labelJumlah.setText(String.valueOf(boardArr[i]));
         }
+        write();
     }
-    
-    public JLabel getJLabelJumlah(int index){
-        JLabel label=null;
-        switch(index){
+
+    public JLabel getJLabelJumlah(int index) {
+        JLabel label = null;
+        switch (index) {
             case 0:
-                label=lblJml0;
+                label = lblJml0;
                 break;
             case 1:
-                label=lblJml1;
+                label = lblJml1;
                 break;
             case 2:
-                label=lblJml2;
-                break; 
+                label = lblJml2;
+                break;
             case 3:
-                label=lblJml3;
+                label = lblJml3;
                 break;
             case 4:
-                label=lblJml4;
+                label = lblJml4;
                 break;
             case 5:
-                label=lblJml5;
+                label = lblJml5;
                 break;
             case 6:
-                label=lblJml6;
+                label = lblJml6;
                 break;
             case 7:
-                label=lblJml7;
+                label = lblJml7;
                 break;
             case 8:
-                label=lblJml8;
+                label = lblJml8;
                 break;
             case 9:
-                label=lblJml9;
+                label = lblJml9;
                 break;
             case 10:
-                label=lblJml10;
+                label = lblJml10;
                 break;
             case 11:
-                label=lblJml11;
+                label = lblJml11;
                 break;
             case 12:
-                label=lblJml12;
+                label = lblJml12;
                 break;
             case 13:
-                label=lblJml13;
+                label = lblJml13;
                 break;
             case 14:
-                label=lblJml14;
+                label = lblJml14;
                 break;
             case 15:
-                label=lblJml15;
+                label = lblJml15;
                 break;
         }
         return label;
     }
-    
-    public JLabel getJLabelHijau(int index){
-        JLabel label=null;
-        switch(index){
+
+    public JLabel getJLabelHijau(int index) {
+        JLabel label = null;
+        switch (index) {
             case 0:
-                label=hijau0;
+                label = hijau0;
                 break;
             case 1:
-                label=hijau1;
+                label = hijau1;
                 break;
             case 2:
-                label=hijau2;
-                break; 
+                label = hijau2;
+                break;
             case 3:
-                label=hijau3;
+                label = hijau3;
                 break;
             case 4:
-                label=hijau4;
+                label = hijau4;
                 break;
             case 5:
-                label=hijau5;
+                label = hijau5;
                 break;
             case 6:
-                label=hijau6;
+                label = hijau6;
                 break;
             case 7:
-                label=hijau7;
+                label = hijau7;
                 break;
             case 8:
-                label=hijau8;
+                label = hijau8;
                 break;
             case 9:
-                label=hijau9;
+                label = hijau9;
                 break;
             case 10:
-                label=hijau10;
+                label = hijau10;
                 break;
             case 11:
-                label=hijau11;
+                label = hijau11;
                 break;
             case 12:
-                label=hijau12;
+                label = hijau12;
                 break;
             case 13:
-                label=hijau13;
+                label = hijau13;
                 break;
             case 14:
-                label=hijau14;
+                label = hijau14;
                 break;
             case 15:
-                label=hijau15;
+                label = hijau15;
                 break;
         }
         return label;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -661,7 +701,7 @@ public class GamePlay extends javax.swing.JFrame {
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {                
+            public void run() {
                 new GamePlay().setVisible(true);
             }
         });
