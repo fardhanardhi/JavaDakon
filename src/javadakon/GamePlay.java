@@ -15,6 +15,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -478,6 +479,11 @@ public class GamePlay extends javax.swing.JFrame {
             String line = br.readLine();
 
             txtChat.setText(tempChat + "\n" + line);
+            if ((boardArr[1]==0 && boardArr[2]==0 && boardArr[3]==0 && boardArr[4]==0 && boardArr[5]==0 && boardArr[6]==0 && boardArr[7]==0) && (boardArr[8]>boardArr[0])) {
+                JOptionPane.showMessageDialog(null, "Selamat... !\nPlayer 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            }else if ((boardArr[9]==0 && boardArr[10]==0 && boardArr[11]==0 && boardArr[12]==0 && boardArr[13]==0 && boardArr[14]==0 && boardArr[15]==0) && (boardArr[0]>boardArr[8])){
+                JOptionPane.showMessageDialog(null, "Selamat... !\nPlayer 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            }
 
             if (line.equals(null)) {
                 System.out.println("null");
