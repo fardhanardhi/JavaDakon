@@ -123,8 +123,9 @@ public class JoinGameMenu extends javax.swing.JFrame {
 
         int portInt = Integer.parseInt(port);
 
-        Random random = new Random();
-        boolean menangSuit = random.nextBoolean();
+//        Random random = new Random();
+//        boolean menangSuit = random.nextBoolean();
+        boolean menangSuit = false;
         String menangSuitStr = !menangSuit + "";
 
         try {
