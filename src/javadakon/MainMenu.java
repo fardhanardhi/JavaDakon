@@ -5,11 +5,15 @@
  */
 package javadakon;
 
+import java.util.Arrays;
+
 /**
  *
  * @author adan
  */
 public class MainMenu extends javax.swing.JFrame {
+
+    int[] boardArr = {0, 7, 7, 7, 7, 7, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7};
 
     /**
      * Creates new form MainMenu
@@ -76,6 +80,15 @@ public class MainMenu extends javax.swing.JFrame {
         CreateGameMenu createGameMenu = new CreateGameMenu();
         createGameMenu.setVisible(true);
         this.setVisible(false);
+
+        String arrStr = "";
+        for (int i = 0; i < boardArr.length; i++) {
+            arrStr += (i == boardArr.length - 1) ? boardArr[i] : boardArr[i] + ",";
+        }
+        System.out.println(arrStr);
+        
+        String arrData[]=arrStr.split("\\,",0);
+
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
