@@ -175,9 +175,9 @@ public class GamePlay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton7);
-        jButton7.setBounds(240, 560, 73, 23);
+        jButton7.setBounds(240, 560, 68, 31);
         getContentPane().add(txtInput);
-        txtInput.setBounds(30, 580, 174, 20);
+        txtInput.setBounds(30, 580, 174, 29);
 
         txtChat.setEditable(false);
         txtChat.setColumns(20);
@@ -185,57 +185,122 @@ public class GamePlay extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtChat);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 470, 166, 96);
+        jScrollPane1.setBounds(40, 470, 262, 87);
 
         hijau9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau9MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau9);
         hijau9.setBounds(730, 320, 90, 110);
 
         hijau10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau10MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau10);
         hijau10.setBounds(640, 320, 90, 110);
 
         hijau11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau11MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau11);
         hijau11.setBounds(550, 320, 90, 110);
 
         hijau12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau12MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau12);
         hijau12.setBounds(450, 320, 90, 110);
 
         hijau13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau13MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau13);
         hijau13.setBounds(360, 320, 90, 110);
 
         hijau14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau14MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau14);
         hijau14.setBounds(270, 320, 90, 110);
 
         hijau15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau15MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau15);
         hijau15.setBounds(170, 320, 90, 110);
 
         hijau7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau7MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau7);
         hijau7.setBounds(730, 190, 90, 110);
 
         hijau6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau6MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau6);
         hijau6.setBounds(640, 190, 90, 110);
 
         hijau5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau5MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau5);
         hijau5.setBounds(550, 190, 90, 110);
 
         hijau4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau4MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau4);
         hijau4.setBounds(450, 190, 90, 110);
 
         hijau3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau3MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau3);
         hijau3.setBounds(360, 190, 90, 110);
 
         hijau2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
+        hijau2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hijau2MouseClicked(evt);
+            }
+        });
         getContentPane().add(hijau2);
         hijau2.setBounds(270, 190, 90, 110);
 
@@ -467,6 +532,58 @@ public class GamePlay extends javax.swing.JFrame {
         updateBoard(lblJml1, 1);
     }//GEN-LAST:event_hijau1MouseClicked
 
+    private void hijau2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau2MouseClicked
+        updateBoard(lblJml2, 2);
+    }//GEN-LAST:event_hijau2MouseClicked
+
+    private void hijau3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau3MouseClicked
+        updateBoard(lblJml3, 3);
+    }//GEN-LAST:event_hijau3MouseClicked
+
+    private void hijau4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau4MouseClicked
+        updateBoard(lblJml4, 4);
+    }//GEN-LAST:event_hijau4MouseClicked
+
+    private void hijau5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau5MouseClicked
+        updateBoard(lblJml5, 5);
+    }//GEN-LAST:event_hijau5MouseClicked
+
+    private void hijau6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau6MouseClicked
+        updateBoard(lblJml6, 6);
+    }//GEN-LAST:event_hijau6MouseClicked
+
+    private void hijau7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau7MouseClicked
+        updateBoard(lblJml7, 7);
+    }//GEN-LAST:event_hijau7MouseClicked
+
+    private void hijau15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau15MouseClicked
+        updateBoard(lblJml15, 15);
+    }//GEN-LAST:event_hijau15MouseClicked
+
+    private void hijau14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau14MouseClicked
+        updateBoard(lblJml14, 14);
+    }//GEN-LAST:event_hijau14MouseClicked
+
+    private void hijau13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau13MouseClicked
+        updateBoard(lblJml13, 13);
+    }//GEN-LAST:event_hijau13MouseClicked
+
+    private void hijau12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau12MouseClicked
+        updateBoard(lblJml12, 12);
+    }//GEN-LAST:event_hijau12MouseClicked
+
+    private void hijau11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau11MouseClicked
+        updateBoard(lblJml11, 11);
+    }//GEN-LAST:event_hijau11MouseClicked
+
+    private void hijau10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau10MouseClicked
+        updateBoard(lblJml10, 10);
+    }//GEN-LAST:event_hijau10MouseClicked
+
+    private void hijau9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau9MouseClicked
+        updateBoard(lblJml9, 9);
+    }//GEN-LAST:event_hijau9MouseClicked
+
     public void read() {
         int portInt = Integer.parseInt(port);
 
@@ -482,35 +599,26 @@ public class GamePlay extends javax.swing.JFrame {
             for (int i = 0; i < boardArr.length; i++) {
                 boardArr[i] = Integer.parseInt(arrData[i]);
             }
-            
+
             System.out.println("arrdata: " + line);
 
-            for (int i = 0; i < boardArr.length; i++) {
-                JLabel labelAktif = getJLabelHijau(i);
-                JLabel labelJumlah = getJLabelJumlah(i);
-                if (boardArr[i] == 0) {
-                    labelAktif.setVisible(false);
-                } else {
-                    labelAktif.setVisible(false);
-                }
-                labelJumlah.setText(String.valueOf(boardArr[i]));
-            }
             if (line.equals(null)) {
                 System.out.println("null");
             } else {
                 tm.stop();
 
             }
-            System.out.println(line);
+            System.out.println("hhhhhhhhhhhhhh: " + line);
 
-            if ((boardArr[1]==0 && boardArr[2]==0 && boardArr[3]==0 && boardArr[4]==0 && boardArr[5]==0 && boardArr[6]==0 && boardArr[7]==0) && (boardArr[8]>boardArr[0])) {
+            if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0) && (boardArr[8] > boardArr[0])) {
                 JOptionPane.showMessageDialog(null, "Selamat... !\nPlayer 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-            }else if ((boardArr[9]==0 && boardArr[10]==0 && boardArr[11]==0 && boardArr[12]==0 && boardArr[13]==0 && boardArr[14]==0 && boardArr[15]==0) && (boardArr[0]>boardArr[8])){
+            } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0) && (boardArr[0] > boardArr[8])) {
                 JOptionPane.showMessageDialog(null, "Selamat... !\nPlayer 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
             }
 
             sk.close();
             ss.close();
+            updateBoardClickable();
         } catch (Exception err) {
             System.out.println(err);
         }
@@ -549,17 +657,34 @@ public class GamePlay extends javax.swing.JFrame {
             jmlAmbil--;
             boardArr[posisi]++;
         }
+        updateBoardClickable();
+        write();
+    }
+
+    public void updateBoardClickable() {
         for (int i = 0; i < boardArr.length; i++) {
             JLabel labelAktif = getJLabelHijau(i);
             JLabel labelJumlah = getJLabelJumlah(i);
             if (boardArr[i] == 0) {
                 labelAktif.setVisible(false);
             } else {
-                labelAktif.setVisible(false);
+                if (menangSuit) {
+                    if (i > 0 && i < 8) {
+                        labelAktif.setVisible(true);
+                    } else {
+                        labelAktif.setVisible(false);
+                    }
+                } else {
+                    if (i > 8 && i <= 15) {
+                        labelAktif.setVisible(true);
+                    } else {
+                        labelAktif.setVisible(false);
+
+                    }
+                }
             }
             labelJumlah.setText(String.valueOf(boardArr[i]));
         }
-        write();
     }
 
     public JLabel getJLabelJumlah(int index) {
