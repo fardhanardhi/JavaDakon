@@ -110,10 +110,6 @@ public class GamePlay extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        txtInput = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtChat = new javax.swing.JTextArea();
         hijau9 = new javax.swing.JLabel();
         hijau10 = new javax.swing.JLabel();
         hijau11 = new javax.swing.JLabel();
@@ -167,25 +163,6 @@ public class GamePlay extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(null);
-
-        jButton7.setText("jButton7");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton7);
-        jButton7.setBounds(240, 560, 68, 31);
-        getContentPane().add(txtInput);
-        txtInput.setBounds(30, 580, 174, 29);
-
-        txtChat.setEditable(false);
-        txtChat.setColumns(20);
-        txtChat.setRows(5);
-        jScrollPane1.setViewportView(txtChat);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 470, 262, 87);
 
         hijau9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
         hijau9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -492,26 +469,6 @@ public class GamePlay extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        String tempChat = txtChat.getText();
-        String text = txtInput.getText();
-        int portInt = Integer.parseInt(port);
-        try {
-            Socket cl = new Socket(ip, portInt);
-            DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
-            dos.writeBytes(text);
-
-            cl.close();
-            dos.close();
-
-            txtChat.setText(tempChat + "\n" + text);
-
-            tm.start();
-        } catch (Exception e) {
-            System.out.println("gagal");
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (menangSuit) {
             // jika menang suit
@@ -650,10 +607,22 @@ public class GamePlay extends javax.swing.JFrame {
         int jmlAmbil = Integer.parseInt(label.getText().toString());
         boardArr[posisi] = 0;
         while (jmlAmbil > 0) {
-            if (posisi == boardArr.length - 1) {
-                posisi = 0;
+            if (menangSuit) {
+                if (posisi == 15) {
+                    posisi = 1;
+                } else {
+                    posisi++;
+                }
             } else {
-                posisi++;
+                if (posisi == 15) {
+                    posisi = 0;
+                }
+                else if (posisi == 7) {
+                    posisi = 9;
+                }
+                else {
+                    posisi++;
+                }
             }
             jmlAmbil--;
             boardArr[posisi]++;
@@ -689,6 +658,7 @@ public class GamePlay extends javax.swing.JFrame {
                 labelAktif.setVisible(false);
             }
             labelJumlah.setText(String.valueOf(boardArr[i]));
+            
         }
     }
 
@@ -855,7 +825,6 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel hijau7;
     private javax.swing.JLabel hijau8;
     private javax.swing.JLabel hijau9;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -863,7 +832,6 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblJml0;
     private javax.swing.JLabel lblJml1;
     private javax.swing.JLabel lblJml10;
@@ -884,7 +852,5 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel lblPlayer2;
     private javax.swing.JLabel lblScore1;
     private javax.swing.JLabel lblScore2;
-    private javax.swing.JTextArea txtChat;
-    private javax.swing.JTextField txtInput;
     // End of variables declaration//GEN-END:variables
 }
