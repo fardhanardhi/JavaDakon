@@ -170,8 +170,9 @@ public class GamePlay extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         String tempChat = txtChat.getText();
         String text = txtInput.getText();
+        int portInt = Integer.parseInt(port);
         try {
-            Socket cl = new Socket("localhost", 5000);
+            Socket cl = new Socket(ip, portInt);
             DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
             dos.writeBytes(text);
 
@@ -201,9 +202,10 @@ public class GamePlay extends javax.swing.JFrame {
 
     public void read() {
         String tempChat = txtChat.getText();
+        int portInt = Integer.parseInt(port);
 
         try {
-            ServerSocket ss = new ServerSocket(5000);
+            ServerSocket ss = new ServerSocket(portInt);
             Socket sk = ss.accept();
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(sk.getInputStream())
