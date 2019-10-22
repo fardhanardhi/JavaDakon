@@ -71,6 +71,8 @@ public class GamePlay extends javax.swing.JFrame {
         txtInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtChat = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -92,9 +94,9 @@ public class GamePlay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton7);
-        jButton7.setBounds(240, 560, 73, 23);
+        jButton7.setBounds(240, 560, 68, 31);
         getContentPane().add(txtInput);
-        txtInput.setBounds(30, 580, 174, 20);
+        txtInput.setBounds(30, 580, 174, 29);
 
         txtChat.setEditable(false);
         txtChat.setColumns(20);
@@ -102,7 +104,21 @@ public class GamePlay extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtChat);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 470, 166, 96);
+        jScrollPane1.setBounds(40, 470, 262, 87);
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Player 2");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(690, 20, 210, 60);
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Player 1");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(90, 20, 210, 60);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player1.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -229,6 +245,8 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtChat;
     private javax.swing.JTextField txtInput;
