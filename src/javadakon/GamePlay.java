@@ -5,6 +5,7 @@
  */
 package javadakon;
 
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -22,6 +23,7 @@ import javax.swing.Timer;
 public class GamePlay extends javax.swing.JFrame {
     private String ip, port;
     boolean menangSuit;
+    int boardArr[]={0,7,7,7,7,7,7,7,0,7,7,7,7,7,7,7};
 
     /**
      * Creates new form Dakon
@@ -32,6 +34,23 @@ public class GamePlay extends javax.swing.JFrame {
      */
     public GamePlay(String ip, String port, boolean menangSuit) {
         initComponents();
+        hijau0.setVisible(false);
+        hijau1.setVisible(false);
+        hijau2.setVisible(false);
+        hijau3.setVisible(false);
+        hijau4.setVisible(false);
+        hijau5.setVisible(false);
+        hijau5.setVisible(false);
+        hijau6.setVisible(false);
+        hijau7.setVisible(false);
+        hijau8.setVisible(false);
+        hijau9.setVisible(false);
+        hijau10.setVisible(false);
+        hijau11.setVisible(false);
+        hijau12.setVisible(false);
+        hijau13.setVisible(false);
+        hijau14.setVisible(false);
+        hijau15.setVisible(false);
         
         this.ip = ip;
         this.port = port;
@@ -403,6 +422,13 @@ public class GamePlay extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (menangSuit) {
             // jika menang suit
+            hijau1.setVisible(true);
+            hijau2.setVisible(true);
+            hijau3.setVisible(true);
+            hijau4.setVisible(true);
+            hijau5.setVisible(true);
+            hijau6.setVisible(true);
+            hijau7.setVisible(true);
         } else {
             // jika kalah
             tm.start();
@@ -464,10 +490,9 @@ public class GamePlay extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run() {                
                 new GamePlay().setVisible(true);
             }
         });
