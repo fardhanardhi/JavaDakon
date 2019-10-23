@@ -571,6 +571,20 @@ public class GamePlay extends javax.swing.JFrame {
             sk.close();
             ss.close();
             updateBoardClickable(true);
+        
+            if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
+                if (menangSuit && (boardArr[8] > boardArr[0])) {
+                    JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);                
+                }else{
+                    JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Kalah", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
+                if (!menangSuit && (boardArr[0] > boardArr[8])) {
+                    JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);                
+                }else{
+                    JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Kalah", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         } catch (Exception err) {
             System.out.println(err);
         }
@@ -580,20 +594,6 @@ public class GamePlay extends javax.swing.JFrame {
         String arrStr = "";
         for (int i = 0; i < boardArr.length; i++) {
             arrStr += (i == boardArr.length - 1) ? boardArr[i] : boardArr[i] + ",";
-        }
-        
-        if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
-            if (menangSuit && (boardArr[8] > boardArr[0])) {
-                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);                
-            }else{
-                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Kalah", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
-            if (!menangSuit && (boardArr[0] > boardArr[8])) {
-                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);                
-            }else{
-                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Kalah", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-            }
         }
             
         int portInt = Integer.parseInt(port);
@@ -699,6 +699,20 @@ public class GamePlay extends javax.swing.JFrame {
             }
         }
         updateBoardClickable(false);
+       
+        if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
+            if (menangSuit && (boardArr[8] > boardArr[0])) {
+                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);                
+            }else{
+                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Kalah", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
+            if (!menangSuit && (boardArr[0] > boardArr[8])) {
+                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);                
+            }else{
+                JOptionPane.showMessageDialog(null, "Selamat... !\nAnda Kalah", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
         write();
     }
 
