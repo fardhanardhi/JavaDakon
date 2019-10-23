@@ -26,7 +26,7 @@ public class GamePlay extends javax.swing.JFrame {
 
     private String ip, port;
     boolean menangSuit;
-    int boardArr[] = {0, 3, 3, 3, 3, 3, 3, 3, 0, 3, 3, 3, 3, 3, 3, 3};
+    int boardArr[] = {0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1};
 
     /**
      * Creates new form Dakon
