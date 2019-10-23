@@ -683,10 +683,6 @@ public class GamePlay extends javax.swing.JFrame {
                         }
                         boardArr[0] += boardArr[temp];
                         boardArr[temp] = 0;
-                    }else if (menangSuit && posisi==8 && boardArr[posisi]==1) {
-                        updateBoardClickable(true);
-                    }else if (!menangSuit && posisi==0 && boardArr[posisi]==1) {
-                        updateBoardClickable(true);
                     }
                 }else {
                     jmlAmbil = boardArr[posisi];
