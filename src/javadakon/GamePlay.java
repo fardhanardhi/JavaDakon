@@ -616,9 +616,11 @@ public class GamePlay extends javax.swing.JFrame {
             } else {
                 if (posisi == 15) {
                     posisi = 0;
-                } else if (posisi == 7) {
+                }
+                else if (posisi == 7) {
                     posisi = 9;
-                } else {
+                }
+                else {
                     posisi++;
                 }
             }
@@ -723,7 +725,7 @@ public class GamePlay extends javax.swing.JFrame {
                 labelAktif.setVisible(false);
             }
             labelJumlah.setText(String.valueOf(boardArr[i]));
-
+            
         }
     }
 
