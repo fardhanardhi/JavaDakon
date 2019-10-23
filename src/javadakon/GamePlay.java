@@ -616,16 +616,77 @@ public class GamePlay extends javax.swing.JFrame {
             } else {
                 if (posisi == 15) {
                     posisi = 0;
-                }
-                else if (posisi == 7) {
+                } else if (posisi == 7) {
                     posisi = 9;
-                }
-                else {
+                } else {
                     posisi++;
                 }
             }
             jmlAmbil--;
             boardArr[posisi]++;
+
+            if (jmlAmbil == 0) {
+                if (boardArr[posisi] == 1) {
+                    if (menangSuit && posisi > 0 && posisi < 8) {
+                        int temp = 0;
+                        switch(posisi) {
+                            case 1:
+                                temp = 15;
+                                break;
+                            case 2:
+                                temp = 14;
+                                break;
+                            case 3:
+                                temp = 13;
+                                break;
+                            case 4:
+                                temp = 12;
+                                break;
+                            case 5:
+                                temp = 11;
+                                break;
+                            case 6:
+                                temp = 10;
+                                break;
+                            case 7:
+                                temp = 9;
+                                break;
+                        }
+                        boardArr[8] += boardArr[temp];
+                        boardArr[temp] = 0;
+                    } else if (!menangSuit && posisi > 8 && posisi <= 15) {
+                        int temp = 0;
+                        switch(posisi) {
+                            case 15:
+                                temp = 1;
+                                break;
+                            case 14:
+                                temp = 2;
+                                break;
+                            case 13:
+                                temp = 3;
+                                break;
+                            case 12:
+                                temp = 4;
+                                break;
+                            case 11:
+                                temp = 5;
+                                break;
+                            case 10:
+                                temp = 6;
+                                break;
+                            case 9:
+                                temp = 7;
+                                break;
+                        }
+                        boardArr[0] += boardArr[temp];
+                        boardArr[temp] = 0;
+                    }
+                } else {
+                    jmlAmbil = boardArr[posisi];
+                    boardArr[posisi] = 0;
+                }
+            }
         }
         updateBoardClickable(false);
         write();
@@ -658,7 +719,7 @@ public class GamePlay extends javax.swing.JFrame {
                 labelAktif.setVisible(false);
             }
             labelJumlah.setText(String.valueOf(boardArr[i]));
-            
+
         }
     }
 
