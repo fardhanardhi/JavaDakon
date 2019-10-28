@@ -28,6 +28,47 @@ public class GamePlay extends javax.swing.JFrame {
     private String ip, port;
     boolean menangSuit;
     int boardArr[] = {0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1};
+    int count = 0;
+    boolean clickable = false;
+    Timer loop = new Timer(500, new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel labelAktif = getJLabelHijau(count);
+            JLabel labelJumlah = getJLabelJumlah(count);
+            if (clickable) {
+                if (boardArr[count] == 0) {
+                    labelAktif.setVisible(false);
+                } else {
+                    if (menangSuit) {
+                        if (count > 0 && count < 8) {
+                            labelAktif.setVisible(true);
+                        } else {
+                            labelAktif.setVisible(false);
+                        }
+                    } else {
+                        if (count > 8 && count <= 15) {
+                            labelAktif.setVisible(true);
+                        } else {
+                            labelAktif.setVisible(false);
+                        }
+                    }
+                }
+            } else {
+                labelAktif.setVisible(false);
+            }
+            labelJumlah.setText(String.valueOf(boardArr[count]));
+            lblScore1.setText(String.valueOf(boardArr[8]));
+            lblScore2.setText(String.valueOf(boardArr[0]));
+            count++;
+            if (count >= boardArr.length) {
+                loop.stop();
+                count = 0;
+                clickable=false;
+                System.out.println("stop");
+            }
+        }
+    });
 
     /**
      * Creates new form Dakon
@@ -575,7 +616,7 @@ public class GamePlay extends javax.swing.JFrame {
             ss.close();
             clickable=true;
             loop.start();
-
+            System.out.println("terima");
             if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
                 if (boardArr[8] > boardArr[0]) {
                     JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
@@ -614,6 +655,8 @@ public class GamePlay extends javax.swing.JFrame {
             dos.close();
 
             tm.start();
+            
+            System.out.println("kirim");
         } catch (Exception e) {
             System.out.println("gagal");
         }
@@ -727,44 +770,6 @@ public class GamePlay extends javax.swing.JFrame {
         write();
     }
 
-    int count = 0;
-    boolean clickable = false;
-    Timer loop = new Timer(1000, new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JLabel labelAktif = getJLabelHijau(count);
-            JLabel labelJumlah = getJLabelJumlah(count);
-            if (clickable) {
-                if (boardArr[count] == 0) {
-                    labelAktif.setVisible(false);
-                } else {
-                    if (menangSuit) {
-                        if (count > 0 && count < 8) {
-                            labelAktif.setVisible(true);
-                        } else {
-                            labelAktif.setVisible(false);
-                        }
-                    } else {
-                        if (count > 8 && count <= 15) {
-                            labelAktif.setVisible(true);
-                        } else {
-                            labelAktif.setVisible(false);
-
-                        }
-                    }
-                }
-            } else {
-                labelAktif.setVisible(false);
-            }
-            labelJumlah.setText(String.valueOf(boardArr[count]));
-            count++;
-            if (count >= boardArr.length) {
-                loop.stop();
-                count = 0;
-            }
-        }
-    });
 
 //    public void updateBoardClickable(boolean clickable) {
 
