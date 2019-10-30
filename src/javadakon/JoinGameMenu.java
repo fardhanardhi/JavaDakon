@@ -69,6 +69,8 @@ public class JoinGameMenu extends javax.swing.JFrame {
             }
         });
 
+        txtMyIP.setText("localhost");
+
         jLabel3.setText("My IP Address :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

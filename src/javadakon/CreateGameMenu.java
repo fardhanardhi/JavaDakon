@@ -49,6 +49,7 @@ public class CreateGameMenu extends javax.swing.JFrame {
             }
         });
 
+        txtIP.setText("localhost");
         txtIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIPActionPerformed(evt);
@@ -121,13 +122,13 @@ public class CreateGameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIPActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        try {
-            // TODO menampilkan ip local:
-            InetAddress inetAddress = InetAddress.getLocalHost();
-            txtIP.setText(inetAddress.getHostAddress());
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(CreateGameMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // menampilkan ip local:
+//        try {
+//            InetAddress inetAddress = InetAddress.getLocalHost();
+//            txtIP.setText(inetAddress.getHostAddress());
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(CreateGameMenu.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

@@ -82,17 +82,10 @@ public class GamePlay extends javax.swing.JFrame {
         System.out.println("ip: " + ip + ", port: " + port + ", menang suit: " + menangSuit);
     }
 
-    int tampung = 0;
     Timer tm = new Timer(100, new ActionListener() {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             read();
-//            tampung++;
-//            if (tampung == 3) {
-//                tm.stop();
-//            }
-
         }
     });
 
@@ -560,37 +553,32 @@ public class GamePlay extends javax.swing.JFrame {
 
             System.out.println("arrdata: " + line);
 
-            if (line.equals(null)) {
-                System.out.println("null");
-            } else {
-                tm.stop();
-
-            }
-            System.out.println("hhhhhhhhhhhhhh: " + line);
-
+            tm.stop();
+            
             sk.close();
             ss.close();
+            
             updateBoardClickable(true);
-        
+
             if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
                 if (boardArr[8] > boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);               
-                }else if(boardArr[8] == boardArr[0]){
+                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+                } else if (boardArr[8] == boardArr[0]) {
                     JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                }else if(boardArr[0] > boardArr[8]){
+                } else if (boardArr[0] > boardArr[8]) {
                     JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
                 if (boardArr[8] > boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);               
-                }else if(boardArr[8] == boardArr[0]){
+                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+                } else if (boardArr[8] == boardArr[0]) {
                     JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                }else if(boardArr[0] > boardArr[8]){
+                } else if (boardArr[0] > boardArr[8]) {
                     JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         } catch (Exception err) {
-            System.out.println(err);
+            System.out.println("error bro: " + err);
         }
     }
 
@@ -599,7 +587,7 @@ public class GamePlay extends javax.swing.JFrame {
         for (int i = 0; i < boardArr.length; i++) {
             arrStr += (i == boardArr.length - 1) ? boardArr[i] : boardArr[i] + ",";
         }
-            
+
         int portInt = Integer.parseInt(port);
         try {
             Socket cl = new Socket(ip, portInt);
@@ -607,12 +595,12 @@ public class GamePlay extends javax.swing.JFrame {
             dos.writeBytes(arrStr);
 
             cl.close();
-            dos.close(); 
-       
+            dos.close();
+
             tm.start();
         } catch (Exception e) {
-            System.out.println("gagal");
-        }  
+            System.out.println("error bro: " + e);
+        }
     }
 
     public void updateBoard(JLabel label, int posisi) {
@@ -628,11 +616,9 @@ public class GamePlay extends javax.swing.JFrame {
             } else {
                 if (posisi == 15) {
                     posisi = 0;
-                }
-                else if (posisi == 7) {
+                } else if (posisi == 7) {
                     posisi = 9;
-                }
-                else {
+                } else {
                     posisi++;
                 }
             }
@@ -643,7 +629,7 @@ public class GamePlay extends javax.swing.JFrame {
                 if (boardArr[posisi] == 1) {
                     if (menangSuit && posisi > 0 && posisi < 8) {
                         int temp = 0;
-                        switch(posisi) {
+                        switch (posisi) {
                             case 1:
                                 temp = 15;
                                 break;
@@ -670,7 +656,7 @@ public class GamePlay extends javax.swing.JFrame {
                         boardArr[temp] = 0;
                     } else if (!menangSuit && posisi > 8 && posisi <= 15) {
                         int temp = 0;
-                        switch(posisi) {
+                        switch (posisi) {
                             case 15:
                                 temp = 1;
                                 break;
@@ -696,28 +682,28 @@ public class GamePlay extends javax.swing.JFrame {
                         boardArr[0] += boardArr[temp];
                         boardArr[temp] = 0;
                     }
-                }else {
+                } else {
                     jmlAmbil = boardArr[posisi];
                     boardArr[posisi] = 0;
                 }
             }
         }
         updateBoardClickable(false);
-       
+
         if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
             if (boardArr[8] > boardArr[0]) {
-                JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);               
-            }else if(boardArr[8] == boardArr[0]){
+                JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            } else if (boardArr[8] == boardArr[0]) {
                 JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-            }else if(boardArr[0] > boardArr[8]){
+            } else if (boardArr[0] > boardArr[8]) {
                 JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
             }
         } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
             if (boardArr[8] > boardArr[0]) {
-                JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);               
-            }else if(boardArr[8] == boardArr[0]){
+                JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            } else if (boardArr[8] == boardArr[0]) {
                 JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-            }else if(boardArr[0] > boardArr[8]){
+            } else if (boardArr[0] > boardArr[8]) {
                 JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
             }
         }
