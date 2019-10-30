@@ -10,9 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -81,16 +84,16 @@ public class GamePlay extends javax.swing.JFrame {
 
         System.out.println("ip: " + ip + ", port: " + port + ", menang suit: " + menangSuit);
     }
+    
+    GamePlay(String data) {
+        read(data);
+    }
 
-    Timer tm = new Timer(100, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            read();
-        }
-    });
-
-    private GamePlay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    GamePlay() {
+    }
+    
+    public void dummy(){
+        // dummy
     }
 
     /**
@@ -103,6 +106,7 @@ public class GamePlay extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
+        lblTest = new javax.swing.JLabel();
         hijau9 = new javax.swing.JLabel();
         hijau10 = new javax.swing.JLabel();
         hijau11 = new javax.swing.JLabel();
@@ -156,6 +160,10 @@ public class GamePlay extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(null);
+
+        lblTest.setText("jLabel7");
+        getContentPane().add(lblTest);
+        lblTest.setBounds(440, 530, 45, 17);
 
         hijau9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hijau.png"))); // NOI18N
         hijau9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -465,17 +473,13 @@ public class GamePlay extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (menangSuit) {
             // jika menang suit
-//            hijau1.setVisible(true);
-//            hijau2.setVisible(true);
-//            hijau3.setVisible(true);
-//            hijau4.setVisible(true);
-//            hijau5.setVisible(true);
-//            hijau6.setVisible(true);
-//            hijau7.setVisible(true);
             updateBoardClickable(true);
         } else {
             // jika kalah
-            tm.start();
+            updateBoardClickable(false);
+            int portInt = Integer.parseInt(this.port);
+            Thread clientReader = new ClientReader(portInt, menangSuit);
+            clientReader.start();
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -535,51 +539,39 @@ public class GamePlay extends javax.swing.JFrame {
         updateBoard(lblJml9, 9);
     }//GEN-LAST:event_hijau9MouseClicked
 
-    public void read() {
-        int portInt = Integer.parseInt(port);
+    private void read(String data) {
+        // split data from string to array
+        String arrData[] = data.split("\\,", 0);
 
-        try {
-            ServerSocket ss = new ServerSocket(portInt);
-            Socket sk = ss.accept();
-            BufferedReader br = new BufferedReader(
-                    new InputStreamReader(sk.getInputStream())
-            );
-            String line = br.readLine();
-            String arrData[] = line.split("\\,", 0);
-
-            for (int i = 0; i < boardArr.length; i++) {
-                boardArr[i] = Integer.parseInt(arrData[i]);
-            }
-
-            System.out.println("arrdata: " + line);
-
-            tm.stop();
-            
-            sk.close();
-            ss.close();
-            
-            updateBoardClickable(true);
-
-            if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
-                if (boardArr[8] > boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[8] == boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[0] > boardArr[8]) {
-                    JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
-                if (boardArr[8] > boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[8] == boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[0] > boardArr[8]) {
-                    JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        } catch (Exception err) {
-            System.out.println("error bro: " + err);
+        // update boardArr data
+        for (int i = 0; i < boardArr.length; i++) {
+            boardArr[i] = Integer.parseInt(arrData[i]);
         }
+
+        System.out.println("arrdata: " + boardArr[0]);
+        
+        lblTest.setText(data);
+
+        updateBoardClickable(true);
+
+        if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
+            if (boardArr[8] > boardArr[0]) {
+                JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            } else if (boardArr[8] == boardArr[0]) {
+                JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            } else if (boardArr[0] > boardArr[8]) {
+                JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
+            if (boardArr[8] > boardArr[0]) {
+                JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            } else if (boardArr[8] == boardArr[0]) {
+                JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            } else if (boardArr[0] > boardArr[8]) {
+                JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
     }
 
     public void write() {
@@ -588,22 +580,24 @@ public class GamePlay extends javax.swing.JFrame {
             arrStr += (i == boardArr.length - 1) ? boardArr[i] : boardArr[i] + ",";
         }
 
-        int portInt = Integer.parseInt(port);
         try {
+            int portInt = Integer.parseInt(port);
             Socket cl = new Socket(ip, portInt);
             DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
             dos.writeBytes(arrStr);
 
             cl.close();
             dos.close();
-
-            tm.start();
-        } catch (Exception e) {
-            System.out.println("error bro: " + e);
+        } catch (IOException ex) {
         }
+
+        int portInt = Integer.parseInt(this.port);
+        Thread clientReader = new ClientReader(portInt, menangSuit);
+        clientReader.start();
     }
 
     public void updateBoard(JLabel label, int posisi) {
+        System.out.println("Client");
         int jmlAmbil = Integer.parseInt(label.getText().toString());
         boardArr[posisi] = 0;
         while (jmlAmbil > 0) {
@@ -688,7 +682,11 @@ public class GamePlay extends javax.swing.JFrame {
                 }
             }
         }
+
+
         updateBoardClickable(false);
+        
+        write();
 
         if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
             if (boardArr[8] > boardArr[0]) {
@@ -707,37 +705,45 @@ public class GamePlay extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        write();
     }
 
     public void updateBoardClickable(boolean clickable) {
         for (int i = 0; i < boardArr.length; i++) {
-            JLabel labelAktif = getJLabelHijau(i);
-            JLabel labelJumlah = getJLabelJumlah(i);
-            if (clickable) {
-                if (boardArr[i] == 0) {
-                    labelAktif.setVisible(false);
-                } else {
-                    if (menangSuit) {
-                        if (i > 0 && i < 8) {
-                            labelAktif.setVisible(true);
-                        } else {
-                            labelAktif.setVisible(false);
-                        }
+            try {
+                JLabel labelAktif = getJLabelHijau(i);
+                JLabel labelJumlah = getJLabelJumlah(i);
+                if (clickable) {
+                    Thread.sleep(500);
+                    if (boardArr[i] == 0) {
+                        System.out.println("uateboard");
+                        labelAktif.setVisible(false);
                     } else {
-                        if (i > 8 && i <= 15) {
-                            labelAktif.setVisible(true);
+                        if (menangSuit) {
+                            if (i > 0 && i < 8) {
+                                labelAktif.setVisible(true);
+                            } else {
+                                labelAktif.setVisible(false);
+                            }
                         } else {
-                            labelAktif.setVisible(false);
-
+                            if (i > 8 && i <= 15) {
+                                labelAktif.setVisible(true);
+                            } else {
+                                labelAktif.setVisible(false);
+                                
+                            }
                         }
                     }
+                } else {
+                    Thread.sleep(500);
+                    labelAktif.setVisible(false);
                 }
-            } else {
-                labelAktif.setVisible(false);
+                labelJumlah.setText(String.valueOf(boardArr[i]));
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
             }
-            labelJumlah.setText(String.valueOf(boardArr[i]));
         }
+        System.out.println("updateBoardClickable done rek");
+
         lblScore1.setText(String.valueOf(boardArr[8]));
         lblScore2.setText(String.valueOf(boardArr[0]));
     }
@@ -889,22 +895,22 @@ public class GamePlay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel hijau0;
-    private javax.swing.JLabel hijau1;
-    private javax.swing.JLabel hijau10;
-    private javax.swing.JLabel hijau11;
-    private javax.swing.JLabel hijau12;
-    private javax.swing.JLabel hijau13;
-    private javax.swing.JLabel hijau14;
-    private javax.swing.JLabel hijau15;
-    private javax.swing.JLabel hijau2;
-    private javax.swing.JLabel hijau3;
-    private javax.swing.JLabel hijau4;
-    private javax.swing.JLabel hijau5;
-    private javax.swing.JLabel hijau6;
-    private javax.swing.JLabel hijau7;
-    private javax.swing.JLabel hijau8;
-    private javax.swing.JLabel hijau9;
+    public static javax.swing.JLabel hijau0;
+    public static javax.swing.JLabel hijau1;
+    public static javax.swing.JLabel hijau10;
+    public static javax.swing.JLabel hijau11;
+    public static javax.swing.JLabel hijau12;
+    public static javax.swing.JLabel hijau13;
+    public static javax.swing.JLabel hijau14;
+    public static javax.swing.JLabel hijau15;
+    public static javax.swing.JLabel hijau2;
+    public static javax.swing.JLabel hijau3;
+    public static javax.swing.JLabel hijau4;
+    public static javax.swing.JLabel hijau5;
+    public static javax.swing.JLabel hijau6;
+    public static javax.swing.JLabel hijau7;
+    public static javax.swing.JLabel hijau8;
+    public static javax.swing.JLabel hijau9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -912,25 +918,26 @@ public class GamePlay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lblJml0;
-    private javax.swing.JLabel lblJml1;
-    private javax.swing.JLabel lblJml10;
-    private javax.swing.JLabel lblJml11;
-    private javax.swing.JLabel lblJml12;
-    private javax.swing.JLabel lblJml13;
-    private javax.swing.JLabel lblJml14;
-    private javax.swing.JLabel lblJml15;
-    private javax.swing.JLabel lblJml2;
-    private javax.swing.JLabel lblJml3;
-    private javax.swing.JLabel lblJml4;
-    private javax.swing.JLabel lblJml5;
-    private javax.swing.JLabel lblJml6;
-    private javax.swing.JLabel lblJml7;
-    private javax.swing.JLabel lblJml8;
-    private javax.swing.JLabel lblJml9;
+    public static javax.swing.JLabel lblJml0;
+    public static javax.swing.JLabel lblJml1;
+    public static javax.swing.JLabel lblJml10;
+    public static javax.swing.JLabel lblJml11;
+    public static javax.swing.JLabel lblJml12;
+    public static javax.swing.JLabel lblJml13;
+    public static javax.swing.JLabel lblJml14;
+    public static javax.swing.JLabel lblJml15;
+    public static javax.swing.JLabel lblJml2;
+    public static javax.swing.JLabel lblJml3;
+    public static javax.swing.JLabel lblJml4;
+    public static javax.swing.JLabel lblJml5;
+    public static javax.swing.JLabel lblJml6;
+    public static javax.swing.JLabel lblJml7;
+    public static javax.swing.JLabel lblJml8;
+    public static javax.swing.JLabel lblJml9;
     private javax.swing.JLabel lblPlayer1;
     private javax.swing.JLabel lblPlayer2;
-    private javax.swing.JLabel lblScore1;
-    private javax.swing.JLabel lblScore2;
+    public javax.swing.JLabel lblScore1;
+    public javax.swing.JLabel lblScore2;
+    public static javax.swing.JLabel lblTest;
     // End of variables declaration//GEN-END:variables
 }
