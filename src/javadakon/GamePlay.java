@@ -14,9 +14,12 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 
 /**
@@ -604,36 +607,36 @@ public class GamePlay extends javax.swing.JFrame {
 
             System.out.println("arrdata: " + line);
 
-            if (line.equals(null)) {
-                System.out.println("null");
-            } else {
-                tm.stop();
-
-            }
-            System.out.println("hhhhhhhhhhhhhh: " + line);
+//            if (line.equals(null)) {
+//                System.out.println("null");
+//            } else {
+//                tm.stop();
+//
+//            }
+            System.out.println("hasileee: " + line);
 
             sk.close();
             ss.close();
-            clickable=true;
-            loop.start();
-            System.out.println("terima");
-            if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
-                if (boardArr[8] > boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[8] == boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[0] > boardArr[8]) {
-                    JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
-                if (boardArr[8] > boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[8] == boardArr[0]) {
-                    JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                } else if (boardArr[0] > boardArr[8]) {
-                    JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
+//            clickable=true;
+//            loop.start();
+//            System.out.println("terima");
+//            if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
+//                if (boardArr[8] > boardArr[0]) {
+//                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+//                } else if (boardArr[8] == boardArr[0]) {
+//                    JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+//                } else if (boardArr[0] > boardArr[8]) {
+//                    JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            } else if ((boardArr[9] == 0 && boardArr[10] == 0 && boardArr[11] == 0 && boardArr[12] == 0 && boardArr[13] == 0 && boardArr[14] == 0 && boardArr[15] == 0)) {
+//                if (boardArr[8] > boardArr[0]) {
+//                    JOptionPane.showMessageDialog(null, "Player 1 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+//                } else if (boardArr[8] == boardArr[0]) {
+//                    JOptionPane.showMessageDialog(null, "Skor Seri", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+//                } else if (boardArr[0] > boardArr[8]) {
+//                    JOptionPane.showMessageDialog(null, "Player 2 Menang", "Pemenang", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            }
         } catch (Exception err) {
             System.out.println(err);
         }
@@ -913,6 +916,72 @@ public class GamePlay extends javax.swing.JFrame {
                 break;
         }
         return label;
+    }
+    
+    
+    private void start() {
+        
+        // Use SwingWorker<Void, Void> and return null from doInBackground if
+        // you don't want any final result and you don't want to update the GUI
+        // as the thread goes along.
+        // First argument is the thread result, returned when processing finished.
+        // Second argument is the value to update the GUI with via publish() and process()
+        SwingWorker<Boolean, Integer> worker = new SwingWorker<Boolean, Integer>() {
+
+            @Override
+            /*
+             * Note: do not update the GUI from within doInBackground.
+             */
+            protected Boolean doInBackground() throws Exception {
+                
+                // Simulate useful work
+//                for(int i=0; i<30; i++) {
+//                    Thread.sleep(100);
+//                    System.out.println("Hello: " + i);
+//                    
+//                    // optional: use publish to send values to process(), which
+//                    // you can then use to update the GUI.
+//                    publish(i);
+//                    publish(i);
+//                }
+                boolean aaa = true;
+                while (aaa) {                    
+                    read();
+                }
+                
+                return false;
+            }
+
+            @Override
+            // This will be called if you call publish() from doInBackground()
+            // Can safely update the GUI here.
+            protected void process(List<Integer> chunks) {
+//                Integer value = chunks.get(chunks.size() - 1);
+                
+//                countLabel1.setText("Current value: " + value);
+            }
+
+            @Override
+            // This is called when the thread finishes.
+            // Can safely update GUI here.
+            protected void done() {
+                
+//                try {
+//                    Boolean status = get();
+//                    statusLabel.setText("Completed with status: " + status);
+//                } catch (InterruptedException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                } catch (ExecutionException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+                
+            }
+            
+        };
+        
+        worker.execute();
     }
 
     /**

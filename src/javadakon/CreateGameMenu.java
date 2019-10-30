@@ -49,6 +49,7 @@ public class CreateGameMenu extends javax.swing.JFrame {
             }
         });
 
+        txtIP.setText("localhost");
         txtIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIPActionPerformed(evt);
