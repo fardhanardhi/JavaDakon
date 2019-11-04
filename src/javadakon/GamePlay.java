@@ -105,7 +105,7 @@ public class GamePlay extends javax.swing.JFrame {
             JLabel labelJumlah = getJLabelJumlah(reRenderBoardCounter);
             if (renderClickable) {
                 if (boardArr[reRenderBoardCounter] == 0) {
-                    System.out.println("uateboard");
+                    System.out.println("updateboard");
                     labelAktif.setVisible(false);
                 } else {
                     if (menangSuit) {
@@ -561,6 +561,7 @@ public class GamePlay extends javax.swing.JFrame {
     }//GEN-LAST:event_hijau14MouseClicked
 
     private void hijau13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau13MouseClicked
+        write(13);
         updateBoard(lblJml13, 13);
     }//GEN-LAST:event_hijau13MouseClicked
 
@@ -573,6 +574,7 @@ public class GamePlay extends javax.swing.JFrame {
     }//GEN-LAST:event_hijau11MouseClicked
 
     private void hijau10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau10MouseClicked
+        write(10);
         updateBoard(lblJml10, 10);
     }//GEN-LAST:event_hijau10MouseClicked
 
@@ -580,20 +582,15 @@ public class GamePlay extends javax.swing.JFrame {
         updateBoard(lblJml9, 9);
     }//GEN-LAST:event_hijau9MouseClicked
 
-    private void read(String data) {
-        // split data from string to array
-        String arrData[] = data.split("\\,", 0);
-
-        // update boardArr data
-        for (int i = 0; i < boardArr.length; i++) {
-            boardArr[i] = Integer.parseInt(arrData[i]);
-        }
+    private void read(String posisiKlik) {
+        System.out.println(posisiKlik);
+        int posisi=Integer.parseInt(posisiKlik);
+        JLabel labelAmbil=getJLabelJumlah(posisi);
+        updateBoard(labelAmbil, posisi);
 
         System.out.println("arrdata: " + boardArr[0]);
 
-        lblTest.setText(data);
-
-        updateBoardClickable(true);
+        lblTest.setText(posisiKlik);
 
         if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
             if (boardArr[8] > boardArr[0]) {
@@ -615,12 +612,8 @@ public class GamePlay extends javax.swing.JFrame {
 
     }
 
-    public void write() {
-        String arrStr = "";
-        for (int i = 0; i < boardArr.length; i++) {
-            arrStr += (i == boardArr.length - 1) ? boardArr[i] : boardArr[i] + ",";
-        }
-
+    public void write(int posisiKlik) {
+        String posisi=String.valueOf(posisiKlik);
         try {
             int portInt = Integer.parseInt(port);
             if (!menangSuit) {
@@ -628,7 +621,7 @@ public class GamePlay extends javax.swing.JFrame {
             }
             Socket cl = new Socket(ip, portInt);
             DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
-            dos.writeBytes(arrStr);
+            dos.writeBytes(posisi);
 
             cl.close();
             dos.close();
@@ -637,96 +630,117 @@ public class GamePlay extends javax.swing.JFrame {
 
     }
 
-    public void updateBoard(JLabel label, int posisi) {
+    public void updateBoard(JLabel label, int posisiAmbil) {
         System.out.println("Client");
         int jmlAmbil = Integer.parseInt(label.getText().toString());
-        boardArr[posisi] = 0;
-        while (jmlAmbil > 0) {
-            if (menangSuit) {
-                if (posisi == 15) {
-                    posisi = 1;
-                } else {
-                    posisi++;
+        int posisiTemp=posisiAmbil+1;
+        JLabel labelTemp;
+        
+        while(jmlAmbil>0){
+            try {
+                boardArr[posisiAmbil]=0;                
+                labelTemp=getJLabelJumlah(posisiAmbil);
+                labelTemp.setText(String.valueOf(boardArr[posisiAmbil]));
+                boardArr[posisiTemp]++;
+                labelTemp=getJLabelJumlah(posisiTemp);
+                labelTemp.setText(String.valueOf(boardArr[posisiTemp]));
+                posisiTemp++;
+                if (posisiTemp==15) {
+                    posisiTemp=0;
                 }
-            } else {
-                if (posisi == 15) {
-                    posisi = 0;
-                } else if (posisi == 7) {
-                    posisi = 9;
-                } else {
-                    posisi++;
-                }
-            }
-            jmlAmbil--;
-            boardArr[posisi]++;
-
-            if (jmlAmbil == 0) {
-                if (boardArr[posisi] == 1) {
-                    if (menangSuit && posisi > 0 && posisi < 8) {
-                        int temp = 0;
-                        switch (posisi) {
-                            case 1:
-                                temp = 15;
-                                break;
-                            case 2:
-                                temp = 14;
-                                break;
-                            case 3:
-                                temp = 13;
-                                break;
-                            case 4:
-                                temp = 12;
-                                break;
-                            case 5:
-                                temp = 11;
-                                break;
-                            case 6:
-                                temp = 10;
-                                break;
-                            case 7:
-                                temp = 9;
-                                break;
-                        }
-                        boardArr[8] += boardArr[temp];
-                        boardArr[temp] = 0;
-                    } else if (!menangSuit && posisi > 8 && posisi <= 15) {
-                        int temp = 0;
-                        switch (posisi) {
-                            case 15:
-                                temp = 1;
-                                break;
-                            case 14:
-                                temp = 2;
-                                break;
-                            case 13:
-                                temp = 3;
-                                break;
-                            case 12:
-                                temp = 4;
-                                break;
-                            case 11:
-                                temp = 5;
-                                break;
-                            case 10:
-                                temp = 6;
-                                break;
-                            case 9:
-                                temp = 7;
-                                break;
-                        }
-                        boardArr[0] += boardArr[temp];
-                        boardArr[temp] = 0;
-                    }
-                } else {
-                    jmlAmbil = boardArr[posisi];
-                    boardArr[posisi] = 0;
-                }
+                                
+                jmlAmbil--; 
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+//        while (jmlAmbil > 0) {
+//            if (menangSuit) {
+//                if (posisiTemp == 15) {
+//                    posisiTemp = 1;
+//                } else {
+//                    posisiTemp++;
+//                }
+//            } else {
+//                if (posisiTemp == 15) {
+//                    posisiTemp = 0;
+//                } else if (posisiTemp == 7) {
+//                    posisiTemp = 9;
+//                } else {
+//                    posisiTemp++;
+//                }
+//            }
+//            jmlAmbil--;
+//            boardArr[posisiAmbil]--;
+//            boardArr[posisiTemp]++;
+//
+//            if (jmlAmbil == 0) {
+//                if (boardArr[posisiTemp] == 1) {
+//                    if (menangSuit && posisiTemp > 0 && posisiTemp < 8) {
+//                        int temp = 0;
+//                        switch (posisiTemp) {
+//                            case 1:
+//                                temp = 15;
+//                                break;
+//                            case 2:
+//                                temp = 14;
+//                                break;
+//                            case 3:
+//                                temp = 13;
+//                                break;
+//                            case 4:
+//                                temp = 12;
+//                                break;
+//                            case 5:
+//                                temp = 11;
+//                                break;
+//                            case 6:
+//                                temp = 10;
+//                                break;
+//                            case 7:
+//                                temp = 9;
+//                                break;
+//                        }
+//                        boardArr[8] += boardArr[temp];
+//                        boardArr[temp] = 0;
+//                    } else if (!menangSuit && posisiTemp > 8 && posisiTemp <= 15) {
+//                        int temp = 0;
+//                        switch (posisiTemp) {
+//                            case 15:
+//                                temp = 1;
+//                                break;
+//                            case 14:
+//                                temp = 2;
+//                                break;
+//                            case 13:
+//                                temp = 3;
+//                                break;
+//                            case 12:
+//                                temp = 4;
+//                                break;
+//                            case 11:
+//                                temp = 5;
+//                                break;
+//                            case 10:
+//                                temp = 6;
+//                                break;
+//                            case 9:
+//                                temp = 7;
+//                                break;
+//                        }
+//                        boardArr[0] += boardArr[temp];
+//                        boardArr[temp] = 0;
+//                    }
+//                } else {
+//                    jmlAmbil = boardArr[posisiTemp];
+//                    boardArr[posisiTemp] = 0;
+//                }
+//            }
+//        }
         // false
-        updateBoardClickable(true);
-
-        write();
+        updateBoardClickable(true); 
+        write(posisiAmbil);      
 
         if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
             if (boardArr[8] > boardArr[0]) {
