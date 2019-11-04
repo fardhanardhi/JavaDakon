@@ -4,10 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/adan/NetBeansProjects/JavaDakon/src/javadakon/MainMenu.java</file>
-            <file>file:/home/adan/NetBeansProjects/JavaDakon/src/javadakon/CreateGameMenu.java</file>
             <file>file:/home/adan/NetBeansProjects/JavaDakon/src/javadakon/GamePlay.java</file>
-            <file>file:/home/adan/NetBeansProjects/JavaDakon/src/javadakon/LoadingPage.java</file>
-            <file>file:/home/adan/NetBeansProjects/JavaDakon/src/javadakon/JoinGameMenu.java</file>
+            <file>file:/home/adan/NetBeansProjects/JavaDakon/src/javadakon/ClientReader.java</file>
         </group>
     </open-files>
 </project-private>

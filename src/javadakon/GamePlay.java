@@ -84,17 +84,59 @@ public class GamePlay extends javax.swing.JFrame {
 
         System.out.println("ip: " + ip + ", port: " + port + ", menang suit: " + menangSuit);
     }
-    
+
     GamePlay(String data) {
         read(data);
     }
 
     GamePlay() {
     }
-    
-    public void dummy(){
+
+    public void dummy() {
         // dummy
     }
+
+    boolean renderClickable = true;
+    int reRenderBoardCounter = 0;
+    Timer reRenderBoard = new Timer(350, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel labelAktif = getJLabelHijau(reRenderBoardCounter);
+            JLabel labelJumlah = getJLabelJumlah(reRenderBoardCounter);
+            if (renderClickable) {
+                if (boardArr[reRenderBoardCounter] == 0) {
+                    System.out.println("uateboard");
+                    labelAktif.setVisible(false);
+                } else {
+                    if (menangSuit) {
+                        if (reRenderBoardCounter > 0 && reRenderBoardCounter < 8) {
+                            labelAktif.setVisible(true);
+                        } else {
+                            labelAktif.setVisible(false);
+                        }
+                    } else {
+                        if (reRenderBoardCounter > 8 && reRenderBoardCounter <= 15) {
+                            labelAktif.setVisible(true);
+                        } else {
+                            labelAktif.setVisible(false);
+
+                        }
+                    }
+                }
+            } else {
+                labelAktif.setVisible(false);
+            }
+            labelJumlah.setText(String.valueOf(boardArr[reRenderBoardCounter]));
+            if (reRenderBoardCounter >= boardArr.length-1) {
+                reRenderBoard.stop();
+                reRenderBoardCounter=0;
+            }
+            else {
+                reRenderBoardCounter++;
+            }
+        }
+
+    });
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -472,15 +514,14 @@ public class GamePlay extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (menangSuit) {
-            // jika menang suit
             updateBoardClickable(true);
         } else {
-            // jika kalah
             updateBoardClickable(false);
-            int portInt = Integer.parseInt(this.port);
-            Thread clientReader = new ClientReader(portInt, menangSuit);
-            clientReader.start();
         }
+
+        int portInt = Integer.parseInt(this.port);
+        Thread clientReader = new ClientReader(portInt, menangSuit);
+        clientReader.start();
     }//GEN-LAST:event_formWindowOpened
 
     private void hijau1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hijau1MouseClicked
@@ -549,7 +590,7 @@ public class GamePlay extends javax.swing.JFrame {
         }
 
         System.out.println("arrdata: " + boardArr[0]);
-        
+
         lblTest.setText(data);
 
         updateBoardClickable(true);
@@ -582,6 +623,9 @@ public class GamePlay extends javax.swing.JFrame {
 
         try {
             int portInt = Integer.parseInt(port);
+            if (!menangSuit) {
+                portInt = portInt + 1;
+            }
             Socket cl = new Socket(ip, portInt);
             DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
             dos.writeBytes(arrStr);
@@ -591,9 +635,6 @@ public class GamePlay extends javax.swing.JFrame {
         } catch (IOException ex) {
         }
 
-        int portInt = Integer.parseInt(this.port);
-        Thread clientReader = new ClientReader(portInt, menangSuit);
-        clientReader.start();
     }
 
     public void updateBoard(JLabel label, int posisi) {
@@ -682,10 +723,9 @@ public class GamePlay extends javax.swing.JFrame {
                 }
             }
         }
+        // false
+        updateBoardClickable(true);
 
-
-        updateBoardClickable(false);
-        
         write();
 
         if ((boardArr[1] == 0 && boardArr[2] == 0 && boardArr[3] == 0 && boardArr[4] == 0 && boardArr[5] == 0 && boardArr[6] == 0 && boardArr[7] == 0)) {
@@ -708,40 +748,10 @@ public class GamePlay extends javax.swing.JFrame {
     }
 
     public void updateBoardClickable(boolean clickable) {
-        for (int i = 0; i < boardArr.length; i++) {
-            try {
-                JLabel labelAktif = getJLabelHijau(i);
-                JLabel labelJumlah = getJLabelJumlah(i);
-                if (clickable) {
-                    Thread.sleep(500);
-                    if (boardArr[i] == 0) {
-                        System.out.println("uateboard");
-                        labelAktif.setVisible(false);
-                    } else {
-                        if (menangSuit) {
-                            if (i > 0 && i < 8) {
-                                labelAktif.setVisible(true);
-                            } else {
-                                labelAktif.setVisible(false);
-                            }
-                        } else {
-                            if (i > 8 && i <= 15) {
-                                labelAktif.setVisible(true);
-                            } else {
-                                labelAktif.setVisible(false);
-                                
-                            }
-                        }
-                    }
-                } else {
-                    Thread.sleep(500);
-                    labelAktif.setVisible(false);
-                }
-                labelJumlah.setText(String.valueOf(boardArr[i]));
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+
+        renderClickable = clickable;
+        reRenderBoard.start();
+
         System.out.println("updateBoardClickable done rek");
 
         lblScore1.setText(String.valueOf(boardArr[8]));

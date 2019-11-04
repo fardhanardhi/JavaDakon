@@ -17,6 +17,7 @@ import java.net.Socket;
  * @author adan
  */
 public class ClientReader extends Thread {
+
     int port;
     boolean menangSuit;
 
@@ -24,7 +25,7 @@ public class ClientReader extends Thread {
         this.port = port;
         this.menangSuit = menangSuit;
     }
-    
+
     static ServerSocket ss;
     static Socket s;
     static DataOutputStream dos;
@@ -34,27 +35,29 @@ public class ClientReader extends Thread {
     @Override
     public void run() {
         try {
+            if (menangSuit) {
+                port = port + 1;
+            }
             ss = new ServerSocket(port);
-            s = ss.accept();
-            br = new BufferedReader(
-                    new InputStreamReader(s.getInputStream())
-            );
-//            while (true) {
+            while (true) {
+                s = ss.accept();
+                br = new BufferedReader(
+                        new InputStreamReader(s.getInputStream())
+                );
                 String data = br.readLine();
-                
-                ss.close();
+
+                // ss.close();
                 s.close();
                 br.close();
-                
+
                 System.out.println("ClientReader: " + data);
 
                 GamePlay gamePlay = new GamePlay(data);
                 gamePlay.dummy();
-                
+
                 System.out.println("dah");
-//            }
-            
-            
+            }
+
         } catch (Exception e) {
             System.out.println("error bro: " + e);
         }
